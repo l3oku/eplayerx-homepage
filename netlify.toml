@@ -1,0 +1,14 @@
+[build]
+  # 告诉 Netlify 执行这个命令，建一个空的 dist 文件夹作为静态文件的伪装
+  command = "mkdir -p dist"
+  publish = "dist"
+
+[functions]
+  # 告诉 Netlify 你的后端函数存放在哪里
+  directory = "netlify/functions"
+
+[[redirects]]
+  # 把所有的用户请求（/* 表示所有路径），全部转发给 api.ts 这个后端函数
+  from = "/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
